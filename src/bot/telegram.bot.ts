@@ -9,7 +9,21 @@ export class TelegramBot {
   }
 
   private initializeBot(): void {
-    this.bot.start((ctx) => ctx.reply('Welcome!'));
+    // this.bot.start((ctx) => ctx.reply('Welcome!')); // Xử lý sự kiện khi bot được bật
+
+    // this.bot.on('text', (ctx) => {
+    //   // Xử lý các tin nhắn văn bản
+    //   const messageText = ctx.message.text;
+    //   ctx.reply(`Bạn đã nói: ${messageText}`);
+    // });
+
+    // this.bot.use((ctx, next) => {
+    //   // Loại bỏ khoảng trắng khi dấu '/' kết hợp với lệnh
+    //   if (ctx.message?.text?.startsWith('/')) {
+    //     ctx.message.chat/ = ctx.message.text.replace(' ', '');
+    //   }
+    //   next();
+    // });
 
     this.bot.command('thontinsanpham', (ctx) => {
       // Xử lý lựa chọn /thontinsanpham
@@ -39,7 +53,8 @@ export class TelegramBot {
         this.handleCommands(ctx, messageText);
       } else {
         // Xử lý các tin nhắn văn bản thông thường
-        ctx.reply(`Bạn đã nói: ${messageText}`);
+        const imageUrl = 'https://i.ytimg.com/vi/4xDzrJKXOOY/hqdefault_live.jpg';
+        ctx.replyWithPhoto({ url: imageUrl }, { caption: 'Lofi ...' });
       }
     });
   }
